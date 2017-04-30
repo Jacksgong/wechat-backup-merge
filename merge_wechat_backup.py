@@ -25,6 +25,8 @@ from os.path import join, exists, getsize
 from shutil import copyfile
 from threading import Thread
 
+__version__ = '1.0.0'
+
 RESET = '\033[0m'
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
 
