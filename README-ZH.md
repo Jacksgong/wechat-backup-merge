@@ -28,6 +28,8 @@ target=~/Dropbox/wechat-backup/Backup
 python merge_wechat_backup.py
 ```
 
+![](https://github.com/Jacksgong/wechat-backup-merge/raw/master/arts/demo.png)
+
 ## License
 
 ```
