@@ -23,7 +23,9 @@ src=~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/
 target=~/Dropbox/wechat-backup/Backup
 ```
 
-#### Step 2. Execute
+#### Step 2. Backup with Wechat Mac client and Execute tool
+
+![](https://github.com/Jacksgong/wechat-backup-merge/raw/master/arts/demo.gif)
 
 ```bash
 python merge_wechat_backup.py

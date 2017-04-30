@@ -24,7 +24,9 @@ src=~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/
 target=~/Dropbox/wechat-backup/Backup
 ```
 
-#### 第二步. 执行
+#### 第二步. 通过Mac客户端备份，然后执行脚本
+
+![](https://github.com/Jacksgong/wechat-backup-merge/raw/master/arts/demo.gif)
 
 ```bash
 python merge_wechat_backup.py
