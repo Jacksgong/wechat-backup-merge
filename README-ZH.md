@@ -2,6 +2,8 @@
 
 > 你可以使用这个工具来合并与迁移微信Mac客户端的聊天记录备份文件到另外的文件夹。
 
+[English Doc](https://github.com/Jacksgong/wechat-backup-merge/blob/master/README.md)
+
 P.S. 这个脚本只在Mac下测试过。
 
 

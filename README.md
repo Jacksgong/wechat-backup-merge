@@ -2,8 +2,9 @@
 
 > You can use this tool to merge and migrate Wechat backup files to another folder.
 
-P.S. This script is only tested on Mac.
+[中文文档](https://github.com/Jacksgong/wechat-backup-merge/blob/master/README-ZH.md)
 
+P.S. This script is only tested on Mac.
 
 ## Dropbox Case
 
