@@ -28,6 +28,7 @@ target=~/Dropbox/wechat-backup/Backup
 ![](https://github.com/Jacksgong/wechat-backup-merge/raw/master/arts/demo.gif)
 
 ```bash
+# You also can execute merge.sh instead of executing the following command
 python merge_wechat_backup.py
 ```
 
