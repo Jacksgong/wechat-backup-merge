@@ -18,9 +18,9 @@ You need create the `path.conf` on the current tool directory file, below is the
 
 ```bash
 # src path
-src=~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/Backup
+src=~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9
 # target path
-target=~/Dropbox/wechat-backup/Backup
+target=~/Dropbox/wechat-backup/2.0b4.0.9
 ```
 
 #### Step 2. Backup with Wechat Mac client and Execute tool
