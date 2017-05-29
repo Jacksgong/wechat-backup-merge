@@ -25,21 +25,9 @@ from os.path import join, exists, getsize
 from shutil import copyfile
 from threading import Thread
 
+from wechat_backup_utils import colorize, YELLOW, RED, GREEN, BLACK, handle_home_case, select_conf_file, show_spinner
+
 __version__ = '1.0.0'
-
-RESET = '\033[0m'
-BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
-
-
-def termcolor(fg=None, bg=None):
-    codes = []
-    if fg is not None: codes.append('3%d' % fg)
-    if bg is not None: codes.append('10%d' % bg)
-    return '\033[%sm' % ';'.join(codes) if codes else ''
-
-
-def colorize(message, fg=None, bg=None):
-    return termcolor(fg, bg) + message + RESET
 
 
 def replace_file(src_path, dst_path, name):
@@ -69,69 +57,18 @@ def merge():
                 print colorize('no need to replace ' + file_name, fg=GREEN)
 
 
-def spinning_cursor():
-    while True:
-        for cursor in '|/-\\':
-            yield cursor
-
-
-NO_HOME_PATH = re.compile(r'~/(.*)')
-home_path = environ['HOME']
-
-
-def handle_home_case(path):
-    path = path.strip()
-    if path.startswith('~/'):
-        path = home_path + '/' + NO_HOME_PATH.match(path).groups()[0]
-    return path
-
-
-SRC_VALUE = re.compile(r'src *= *(.*)')
-DST_VALUE = re.compile(r'target *= *(.*)')
-
-conf_path = 'example_path.conf'
-if exists('path.conf'):
-    conf_path = 'path.conf'
-    print colorize("we will read config from path.conf file.", fg=GREEN)
-else:
-    print "we can't find path.conf file, so we using the example_path.conf file as the config file."
-
-src = None
-dst = None
-
-conf_file = open(conf_path, 'r')
-for line in conf_file:
-    if line.startswith('#') or line.startswith('//'):
-        continue
-    unknown_line = True
-    src_re = SRC_VALUE.match(line)
-    if src_re is not None:
-        src_value = src_re.groups()[0]
-        if src_value is not None:
-            src = handle_home_case(src_value)
-            unknown_line = False
-            print 'the source directory is assigned to ' + colorize(src, fg=BLACK, bg=GREEN)
-    else:
-        dst_re = DST_VALUE.match(line)
-        if dst_re is not None:
-            dst_value = dst_re.groups()[0]
-            if dst_value is not None:
-                dst = handle_home_case(dst_value)
-                unknown_line = False
-                print 'the target directory is assigned to ' + colorize(dst, fg=BLACK, bg=GREEN)
-
-    if unknown_line:
-        print colorize('unknown line on conf file: ' + line)
-conf_file.close()
+src, dst, conf_path = select_conf_file()
 
 if src is None or dst is None:
     exit(colorize("we can't find source directory or target directory on " + conf_path))
 
 RELATE_DIR = re.compile(r'' + src + '/(.*)')
-spinner = spinning_cursor()
 for src_subdir, dirs, files in walk(src):
     for file_name in files:
         if file_name == '.DS_Store':
+            continue
+
+        if src_subdir == src:
             continue
 
         relate_dir = RELATE_DIR.match(src_subdir).groups()[0]
@@ -144,10 +81,6 @@ for src_subdir, dirs, files in walk(src):
         thread = Thread(target=merge)
         thread.start()
 
-        while thread.isAlive():
-            sys.stdout.write(spinner.next())
-            sys.stdout.flush()
-            time.sleep(0.1)
-            sys.stdout.write('\b')
+        show_spinner(thread)
 
 print 'everything is done!'
