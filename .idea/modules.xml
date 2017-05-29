@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/toolset.iml" filepath="$PROJECT_DIR$/.idea/toolset.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wechat-backup-merge.iml" filepath="$PROJECT_DIR$/.idea/wechat-backup-merge.iml" />
     </modules>
   </component>
 </project>
